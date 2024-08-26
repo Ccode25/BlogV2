@@ -1,0 +1,23 @@
+services:
+  router:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: node router.js
+    ports:
+      - "3000:3000"
+    networks:
+      - my-network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: node server.js
+    ports:
+      - "4000:4000"
+    networks:
+      - my-network
+
+networks:
+  my-network:
