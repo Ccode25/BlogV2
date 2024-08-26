@@ -55,6 +55,17 @@ app.post("/submit-form", async (req, res) => {
   }
 });
 
+app.get("/delete/:id", async (req, res) => {
+  try{
+    const id = parseInt(req.params.id);
+    await axios.delete(`${API_URL}/posts/${id}`);
+    res.redirect("/")    
+  }
+  catch(error) {
+    res.status(404).json({error: "No post was deleted"});
+  }
+  
+})
 // Start the server and listen on the specified port
 app.listen(port, () => {
   console.log(`Server running on port ${port}.`);
