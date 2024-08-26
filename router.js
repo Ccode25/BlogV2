@@ -1,28 +1,29 @@
 import express from "express";
 import bodyParser from "body-parser";
+import axios from "axios";
+import { render } from "ejs";
 
 const app = express();
 const port = 3000;
+const API_URL = "http://localhost:4000";
 
-// Initial post data for rendering pages
-let postData = {
-  titlePost: "Featured Blog",
-  subTitlePost: "Subtitle",
-  contentPost: "This is the content of the featured blog post."
-};
 
-// Define the cards array to store card data
-let cards = [];
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
-// Route to render the home page with post data
-app.get("/", (req, res) => {
-  res.render('index', postData);
+
+app.get("/", async (req, res) => {
+  const response = await axios.get(API_URL);
+  const lastIndex = await axios.get(`${API_URL}/last-post`)
+  const result = response.data;
+  res.render("index.ejs", {posts : result, header : lastIndex.data});
+  
 });
+
 
 // Route to render the about page with post data
 app.get("/about", (req, res) => {
@@ -45,28 +46,14 @@ app.get("/form", (req, res) => {
 });
 
 // Route to handle form submissions and update post data
-app.post("/submit-form", (req, res) => {
-  const { blogTitle, blogSubTitle, blogContent } = req.body;
-
-  postData = {
-    titlePost: blogTitle,
-    subTitlePost: blogSubTitle,
-    contentPost: blogContent
-  };
-
-  // Check for duplicate before adding to the cards array
-  const existingCard = cards.find(card => card.title === blogTitle && card.content === blogContent);
-  if (!existingCard) {
-    cards.push({
-      id: Date.now(),
-      title: blogTitle,
-      subtitle: blogSubTitle,
-      content: blogContent
-    });
+app.post("/submit-form", async (req, res) => {
+  try {
+    await axios.post(`${API_URL}/posts`, req.body);
+    res.redirect("/")
   }
-
-  // Redirect to the home page after processing the form data
-  res.redirect('/');
+  catch (error) {
+    res.status(500).json({error : "Error creating post"});  
+  }
 });
 
 
@@ -77,13 +64,6 @@ app.get('/cards-data', (req, res) => {
   console.log(cards);
 });
 
-// API route to add a new card
-app.post('/add-card', (req, res) => {
-  const newCard = req.body;
-  newCard.id = Date.now(); // Assign a unique ID to the new card
-  cards.push(newCard);
-  res.json({ success: true, id: newCard.id });
-});
 
 // API route to delete a card by ID
 app.delete('/delete-card/:id', (req, res) => {

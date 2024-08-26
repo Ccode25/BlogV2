@@ -13,33 +13,6 @@
       </div>
   </div>
 </header>
-<!-- Main Content-->
-<!-- <main class="mb-4">
-  <div class="container px-4 px-lg-5">
-      <div class="row gx-4 gx-lg-5 justify-content-center">
-          <div class="col-md-10 col-lg-8 col-xl-7">
-            <form action="/form" method="POST">
-              <div class="form-group">
-                <label for="exampleFormControlInput1">Blog Title</label>
-                <input type="text" name="blogTitle" class="form-control" id="exampleFormControlInput1" placeholder="Title">
-              </div>
-              
-              <div class="form-group">
-                <label for="exampleFormControlInput1">Blog SubTitle</label>
-                <input type="text" name="blogSubTitle" class="form-control" id="exampleFormControlInput1" placeholder="SubTitle">
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1">Blog Content</label>
-                <textarea class="form-control" name="blogText" id="exampleFormControlTextarea1" rows="3" placeholder="blog"></textarea>
-              </div>
-              <button type="submit" value="OK" class="btn btn-secondary">Secondary</button>
-              
-            </form>
-            
-          </div>
-      </div>
-  </div>
-</main> -->
 
 
 <main class="mb-4">
@@ -49,17 +22,17 @@
               <form id="blogForm" action="/submit-form" method="POST">
                 <div class=" text-warning form-group">
                   <label for="blogTitle">Blog Title</label>
-                  <input type="text" name="blogTitle" class="form-control" id="blogTitle" placeholder="Title">
+                  <input type="text" name="title" class="form-control" id="blogTitle" placeholder="Title">
                 </div>
                 
                 <div class="text-warning form-group">
-                  <label for="blogSubTitle">Blog SubTitle</label>
-                  <input type="text" name="blogSubTitle" class="form-control" id="blogSubTitle" placeholder="SubTitle">
+                  <label for="blogSubTitle">Author</label>
+                  <input type="text" name="author" class="form-control" id="blogAuthor" placeholder="Author">
                 </div>
 
                 <div class="text-warning form-group">
                   <label for="blogContent">Blog Content</label>
-                  <textarea class="form-control" name="blogContent" id="blogContent" rows="3" placeholder="blog"></textarea>
+                  <textarea class="form-control" name="content" id="blogContent" rows="3" placeholder="blog"></textarea>
                 </div>
                 
                 <button id="submit" type="submit" class="btn btn-secondary">Submit</button>
@@ -68,6 +41,8 @@
         </div>
     </div>
   </main>
+
+  
   
 <!-- Footer-->
 

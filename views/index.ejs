@@ -6,8 +6,8 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7 text-center">
                         <div class="site-heading">
-                            <h1 class="text-warning lead"><%= titlePost %> </h1>
-                            <span class="subheading"><%= subTitlePost %></span>
+                            <h1 class="text-warning lead"><%= header.title %> </h1>
+                            <span class="subheading"><%= header.author %></span>
                         </div>
                     </div>
                 </div>
@@ -15,67 +15,7 @@
         </header>
         
         
-        <!-- Main Content-->
-        
-                <!-- <div class="d-flex col-md-10 col-lg-8 col-xl-12"> -->
-                    <!-- Post preview-->
-                    <!-- <div class="post-preview">
-                        <a href="post">
-                            <h2 class="post-title"></h2>
-                            <h3 class="post-subtitle"></h3>
-                        </a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
-                            on September 24, 2023
-                        </p>
-                    </div> -->
-                    <!-- Divider-->
-                    <!-- <hr class="my-4" /> -->
-                    <!-- Post preview-->
-                    <!-- <div class="post-preview">
-                        <a href="post"><h2 class="post-title">I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.</h2></a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
-                            on September 18, 2023
-                        </p>
-                    </div> -->
-                    <!-- Divider-->
-                    <!-- <hr class="my-4" /> -->
-                    <!-- Post preview-->
-                    <!-- <div class="post-preview">
-                        <a href="post">
-                            <h2 class="post-title">Science has not yet mastered prophecy</h2>
-                            <h3 class="post-subtitle">We predict too much for the next year and yet far too little for the next ten.</h3>
-                        </a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
-                            on August 24, 2023
-                        </p>
-                    </div> -->
-                    <!-- Divider-->
-                    <!-- <hr class="my-4" /> -->
-                    <!-- Post preview-->
-                    <!-- <div class="post-preview">
-                        <a href="post.html">
-                            <h2 class="post-title">Failure is not an option</h2>
-                            <h3 class="post-subtitle">Many say exploration is part of our destiny, but it’s actually our duty to future generations.</h3>
-                        </a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
-                            on July 8, 2023
-                        </p>
-                    </div> -->
-                    <!-- Divider-->
-                    <!-- <hr class="my-4" /> -->
-                    <!-- Pager-->
-                    <!-- <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
-                </div>
-            </div>
-        </div> -->
+       
         <section class="content-header wrapper">
             <div class="container">
                 <div class="row">
@@ -86,7 +26,31 @@
                 </div>
                 <div id="card-holder" class="container mt-4">
                     <div class="row" id="card-container">
+                      <% posts.forEach(post => {%>
+                        <% const shortContent = post.content.length > 100 ? post.content.substring(0, 100) + '...' : post.content %>
+                
                         <!-- Cards will be appended here -->
+                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                          <div class="text-dark card card-has-bg click-col">
+                              <img alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?" class="card-img d-none" src="https://source.unsplash.com/600x900/?computer,design">
+                              <div class="card-img-overlay d-flex flex-column">
+                                  <div class="card-body">
+                                      <small class="card-meta mb-2"><%= post.author %></small>
+                                      <h4 class="card-title mt-0">
+                                          <a class="text-dark" href="#"><%= post.title %></a>
+                                      </h4>
+                                      <p><%= shortContent %> <br><span class="round read-more fs-6 text-success" data-id= "<%= post.id %>" data-title="<%= post.title %>" data-content="<%= post.content %>">Read More..</p>
+                                  </div>
+                                  <div class="card-footer">
+                                      <button class="btn btn-dark button-round read-more" data-id= "<%= post.id %>" data-title="<%= post.title %>" data-content="<%= post.content %>">Read More</button>
+                                      <button class="btn btn-danger button-round delete-card" data-id="${card.id}">Delete</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <% const latestPost = post[-1] %>
+                   <% }); %>
                     </div>
                 </div>
             </div>
@@ -112,8 +76,6 @@
     </div>
   </div>
   
-        
-          
 
           
           
