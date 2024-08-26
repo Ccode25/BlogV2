@@ -19,24 +19,48 @@
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
-              <form id="blogForm" action="/submit-form" method="POST">
-                <div class=" text-warning form-group">
-                  <label for="blogTitle">Blog Title</label>
-                  <input type="text" name="title" class="form-control" id="blogTitle" placeholder="Title">
-                </div>
-                
-                <div class="text-warning form-group">
-                  <label for="blogSubTitle">Author</label>
-                  <input type="text" name="author" class="form-control" id="blogAuthor" placeholder="Author">
-                </div>
+              <% if (locals.posts) { %>
+            <form id="blogForm" action="/submit-form/<%= posts.id %>" method="POST">
+              <div class=" text-warning form-group">
+                <label for="blogTitle">Blog Title</label>
+                <input type="text" name="title" class="form-control" id="blogTitle" value="<%= posts.title %>">
+              </div>
+              
+              <div class="text-warning form-group">
+                <label for="blogSubTitle">Author</label>
+                <input type="text" name="author" class="form-control" id="blogAuthor" value="<%= posts.author %>">
+              </div>
 
-                <div class="text-warning form-group">
-                  <label for="blogContent">Blog Content</label>
-                  <textarea class="form-control" name="content" id="blogContent" rows="3" placeholder="blog"></textarea>
-                </div>
-                
-                <button id="submit" type="submit" class="btn btn-secondary">Submit</button>
-              </form>
+              <div class="text-warning form-group">
+                <label for="blogContent">Blog Content</label>
+                <textarea class="form-control" name="content" id="blogContent" rows="3"><%= posts.content %></textarea>
+              </div>
+              
+              
+              <button id="submit" type="submit" class="btn btn-secondary">Submit</button>
+            </form>
+            <% } else { %>
+            <form id="blogForm" action="/submit-form/" method="POST">
+              <div class=" text-warning form-group">
+                <label for="blogTitle">Blog Title</label>
+                <input type="text" name="title" class="form-control" id="blogTitle" placeholder="Title">
+              </div>
+              
+              <div class="text-warning form-group">
+                <label for="blogSubTitle">Author</label>
+                <input type="text" name="author" class="form-control" id="blogAuthor" placeholder="Author">
+              </div>
+
+              <div class="text-warning form-group">
+                <label for="blogContent">Blog Content</label>
+                <textarea class="form-control" name="content" id="blogContent" rows="3" placeholder="blog"></textarea>
+              </div>
+              
+              <button id="submit" type="submit" class="btn btn-secondary">Submit</button>
+            </form>
+            <% } %>
+        
+
             </div>
         </div>
     </div>

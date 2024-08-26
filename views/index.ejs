@@ -42,16 +42,18 @@
                                       <p><%= shortContent %> <br><span class="round read-more fs-6 text-success" data-id= "<%= post.id %>" data-title="<%= post.title %>" data-content="<%= post.content %>">Read More..</p>
                                   </div>
                                   <div class="card-footer" >
-                                      <button class="btn btn-dark button-round text-white"><a class="text-white" href="/">Edit</a></button>
+                                      <a  href="/edit/<%= post.id %>">
+                                        <button class=" text-white btn btn-dark button-round text-white">Edit</button>
+                                      </a>
                                       <a  href="/delete/<%= post.id %>">
-                                        <button style="text-decoration: none" class="text-white btn btn-danger button-round delete-card">Delete</button>
+                                        <button class="text-white btn btn-danger button-round delete-card">Delete</button>
                                       </a>
                                    
                                   </div>
                               </div>
                           </div>
                       </div>
-                      <% const latestPost = post[-1] %>
+                      
                    <% }); %>
                     </div>
                 </div>

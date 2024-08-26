@@ -8,11 +8,11 @@ const API_URL = "http://localhost:4000";
 
 
 
-
-app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
-app.set('view engine', 'ejs');
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({extended : true}));
+app.use(bodyParser.json());
+app.set('view engine', 'ejs');
+
 
 
 app.get("/", async (req, res) => {
@@ -54,6 +54,24 @@ app.post("/submit-form", async (req, res) => {
     res.status(500).json({error : "Error creating post"});  
   }
 });
+
+app.post("/submit-form/:id", async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    await axios.patch(`${API_URL}/posts/${id}`, req.body);
+    res.redirect("/")
+  }
+  catch (error) {
+    res.status(500).json({error : "Error creating post"});  
+  }
+});
+
+app.get("/edit/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  const response = await axios.patch(`${API_URL}/posts/${id}`);
+  res.render("modify.ejs", {posts: response.data, heading: "Edit Post"})
+})
+
 
 app.get("/delete/:id", async (req, res) => {
   try{

@@ -33,6 +33,7 @@ let posts = [{
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(express.static("public"));
 
 //Route to get all posts
 app.get("/", (req, res) => {
@@ -44,6 +45,8 @@ app.get("/last-post", (req, res) => {
   res.json(lastPost);
 
   });
+
+  
 
 app.post("/posts", (req, res) => {
   
