@@ -1,7 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
-import { render } from "ejs";
 
 const app = express();
 const port = 3000;
@@ -18,7 +17,7 @@ app.use(express.static("public"));
 
 app.get("/", async (req, res) => {
   const response = await axios.get(API_URL);
-  const lastIndex = await axios.get(`${API_URL}/last-post`)
+  const lastIndex = await axios.get(`${API_URL}/last-post`);
   const result = response.data;
   res.render("index.ejs", {posts : result, header : lastIndex.data});
   
@@ -54,32 +53,6 @@ app.post("/submit-form", async (req, res) => {
   catch (error) {
     res.status(500).json({error : "Error creating post"});  
   }
-});
-
-
-
-// API route to send card data as JSON
-app.get('/cards-data', (req, res) => {
-  res.json(cards);
-  console.log(cards);
-});
-
-<<<<<<< HEAD:router.js
-=======
-// // API route to add a new card
-// app.post('/add-card', (req, res) => {
-//   const newCard = req.body;
-//   newCard.id = Date.now(); // Assign a unique ID to the new card
-//   cards.push(newCard);
-//   res.json({ success: true, id: newCard.id });
-// });
->>>>>>> origin/master:index.js
-
-// API route to delete a card by ID
-app.delete('/delete-card/:id', (req, res) => {
-  const cardId = parseInt(req.params.id, 10); // Get the card ID from the URL parameters and parse it as an integer
-  cards = cards.filter(card => card.id !== cardId);
-  res.json({ success: true });
 });
 
 // Start the server and listen on the specified port
