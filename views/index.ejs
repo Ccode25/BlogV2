@@ -41,9 +41,12 @@
                                       </h4>
                                       <p><%= shortContent %> <br><span class="round read-more fs-6 text-success" data-id= "<%= post.id %>" data-title="<%= post.title %>" data-content="<%= post.content %>">Read More..</p>
                                   </div>
-                                  <div class="card-footer">
-                                      <button class="btn btn-dark button-round"><a href="">Edit</a></button>
-                                      <a href="/delete/<%= post.id %>"><button class="btn btn-danger button-round delete-card">Delete</button></a>
+                                  <div class="card-footer" >
+                                      <button class="btn btn-dark button-round text-white"><a class="text-white" href="/">Edit</a></button>
+                                      <a  href="/delete/<%= post.id %>">
+                                        <button style="text-decoration: none" class="text-white btn btn-danger button-round delete-card">Delete</button>
+                                      </a>
+                                   
                                   </div>
                               </div>
                           </div>

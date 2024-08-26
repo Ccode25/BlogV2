@@ -10812,3 +10812,7 @@ header.masthead .post-heading .meta a {
   border-radius: 25px;
   min-height: fit-content;
 }
+
+.no-text-decoration {
+  text-decoration: none;
+}
